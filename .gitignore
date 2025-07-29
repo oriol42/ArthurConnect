@@ -1,0 +1,20 @@
+# Fichiers Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+
+# Fichiers Django
+*.log
+*.pot
+*.sqlite3
+media/
+staticfiles/
+
+# Fichiers d'éditeur
+.vscode/
+.idea/
