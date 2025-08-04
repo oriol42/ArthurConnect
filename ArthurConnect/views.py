@@ -17,3 +17,9 @@ def checkout(request):
 
 def singleproduct(request):
   return render(request,'ArthurConnect/single-product.html')
+
+def about(request):
+  return render(request,'ArthurConnect/about.html')
+
+def service_client(request):
+  return render(request,'ArthurConnect/service-client.html')
