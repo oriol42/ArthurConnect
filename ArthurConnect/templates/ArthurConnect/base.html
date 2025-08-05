@@ -34,25 +34,15 @@
         <div class="row">
           <div class="col-lg-7">
             <div class="float-left">
-              <p>Phone: +01 256 25 235</p>
-              <p>email: info@eiser.com</p>
+              <p>Phone: +237 6 xx xx xx xx</p>
+              <p>email: arthurdjoumessi326@gmail.com</p>
             </div>
           </div>
           <div class="col-lg-5">
             <div class="float-right">
               <ul class="right_side">
                 <li>
-                  <a href="cart.html">
-                    gift card
-                  </a>
-                </li>
-                <li>
-                  <a href="tracking.html">
-                    track order
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html">
+                  <a href="{% url 'contact' %}">
                     Contact Us
                   </a>
                 </li>
@@ -66,8 +56,8 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a class="navbar-brand logo_h" href="index.html">
-            <img src="{% static 'ArthurConnect/img/logo.png' %}" alt="" />
+          <a class="navbar-brand logo_h" href="{% url 'index' %}">
+            <img src="{% static 'ArthurConnect/img/logoarthurconnect.png' %}" alt="" /width="120" height="110">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,58 +71,25 @@
               <div class="col-lg-7 pr-0">
                 <ul class="nav navbar-nav center_nav pull-right">
                   <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="{% url 'index' %}">Accueil</a>
                   </li>
                   <li class="nav-item submenu dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Shop</a>
+                      aria-expanded="false">Categorie</a>
                     <ul class="dropdown-menu">
                       <li class="nav-item">
-                        <a class="nav-link" href="category.html">Shop Category</a>
+                        <a class="nav-link" href="{% url 'category' %}">Formations</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="single-product.html">Product Details</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="checkout.html">Product Checkout</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="cart.html">Shopping Cart</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Blog</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="single-blog.html">Blog Details</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle"dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Pages</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="tracking.html">Tracking</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="elements.html">Elements</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="about.html">À Propos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="service-client.html">Service Client</a>
+                        <a class="nav-link" href="single-product.html">Articles</a>
                       </li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">À Propos</a>
                   </li>
                 </ul>
               </div>
@@ -173,6 +130,30 @@
   <!--================Header Menu Area =================-->
   {% block content %}
   {% endblock %}
+
+  <!-- ================ Live Chat Widget HTML ================= -->
+  <div id="chat-widget" class="chat-widget" style="display: none;">
+    <div class="chat-header">
+      <h5><i class="fa fa-comments"></i> Support en Direct</h5>
+      <button onclick="closeChat()" class="close-chat"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-messages" id="chat-messages">
+        <div class="message agent">
+          <p>Bonjour ! Comment pouvons-nous vous aider aujourd'hui ?</p>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Tapez votre message...">
+        <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-toggle" onclick="openChat()">
+    <i class="fa fa-comments"></i>
+  </div>
+  <!-- ================ End Widget HTML ================= -->
 
   <!--================ start footer Area  =================-->
   <footer class="footer-area section_gap">
@@ -263,6 +244,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="{% static 'ArthurConnect/vendors/counter-up/jquery.counterup.js' %}"></script>
   <script src="{% static 'ArthurConnect/js/mail-script.js' %}"></script>
   <script src="{% static 'ArthurConnect/js/theme.js' %}"></script>
+  <script src="{% static 'ArthurConnect/js/chat.js' %}"></script>
 
 </body>
 </html>
