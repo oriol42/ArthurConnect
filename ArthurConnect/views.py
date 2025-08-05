@@ -15,9 +15,6 @@ def cart(request):
 def checkout(request):
   return render(request,'ArthurConnect/checkout.html')
 
-def singleproduct(request):
-  return render(request,'ArthurConnect/single-product.html')
-
 def about(request):
   return render(request,'ArthurConnect/about.html')
 
