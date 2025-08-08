@@ -1,7 +1,7 @@
 
 {% extends 'ArthurConnect/base.html' %}
 {% load static %}
-{% block title %} contact {% endblock %}
+{% block title %}Contact - ArthurConnect{% endblock %}
 
 {% block content %}
     <!--================Home Banner Area =================-->
@@ -12,12 +12,12 @@
             class="banner_content d-md-flex justify-content-between align-items-center"
           >
             <div class="mb-3 mb-md-0">
-              <h2>Contact Us</h2>
-              <p>Very us move be blessed multiply night</p>
+              <h2>Contactez-Nous</h2>
+              <p>Nous sommes là pour vous aider et répondre à toutes vos questions</p>
             </div>
             <div class="page_link">
-              <a href="{% url 'index' %}">Home</a>
-              <a href="{% url 'contact' %}">Contact Us</a>
+              <a href="{% url 'index' %}">Accueil</a>
+              <a href="{% url 'contact' %}">Contact</a>
             </div>
           </div>
         </div>
@@ -25,102 +25,169 @@
     </section>
     <!--================End Home Banner Area =================-->
 
-    <!-- ================ contact section start ================= -->
-  <section class="section_gap">
-    <div class="container">
-      <div class="d-none d-sm-block mb-5 pb-4">
-        <div id="map" style="height: 480px;"></div>
-        <script>
-          function initMap() {
-            var uluru = {lat: -25.363, lng: 131.044};
-            var grayStyles = [
-              {
-                featureType: "all",
-                stylers: [
-                  { saturation: -90 },
-                  { lightness: 50 }
-                ]
-              },
-              {elementType: 'labels.text.fill', stylers: [{color: '#A3A3A3'}]}
-            ];
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: -31.197, lng: 150.744},
-              zoom: 9,
-              styles: grayStyles,
-              scrollwheel:  false
-            });
-          }
-          
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+    <!-- ================ Contact Info Section Start ================= -->
+    <section class="section_gap">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="main_title">
+              <h2><span>Nos Coordonnées</span></h2>
+              <p>N'hésitez pas à nous contacter pour toute question ou assistance</p>
+            </div>
+          </div>
+        </div>
         
-      </div>
-
-
-      <div class="row">
-        <div class="col-12">
-          <h2 class="contact-title">Get in Touch</h2>
-        </div>
-        <div class="col-lg-8 mb-4 mb-lg-0">
-          <form class="form-contact contact_form" action="#" method="post" id="contactForm" novalidate="novalidate">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
-                </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-contact-info text-center">
+              <div class="contact-icon">
+                <i class="fa fa-map-marker"></i>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
-                </div>
-              </div>
-            </div>
-            <div class="form-group mt-lg-3">
-              <button type="submit" class="main_btn">Send Message</button>
-            </div>
-          </form>
-
-
-        </div>
-
-        <div class="col-lg-4">
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-home"></i></span>
-            <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
+              <h4>Notre Adresse</h4>
+              <p>Buttonwood, California.<br>Rosemead, CA 91770</p>
             </div>
           </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-            <div class="media-body">
-              <h3><a href="tel:454545654">00 (440) 9865 562</a></h3>
-              <p>Mon to Fri 9am to 6pm</p>
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single-contact-info text-center">
+              <div class="contact-icon">
+                <i class="fa fa-phone"></i>
+              </div>
+              <h4>Téléphone</h4>
+              <p><a href="tel:454545654">00 (440) 9865 562</a><br>Lun-Ven 9h-18h</p>
             </div>
           </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-email"></i></span>
-            <div class="media-body">
-              <h3><a href="mailto:support@colorlib.com">support@colorlib.com</a></h3>
-              <p>Send us your query anytime!</p>
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single-contact-info text-center">
+              <div class="contact-icon">
+                <i class="fa fa-envelope"></i>
+              </div>
+              <h4>Email</h4>
+              <p><a href="mailto:support@colorlib.com">support@colorlib.com</a><br>Réponse sous 24h</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-	<!-- ================ contact section end ================= -->
+    </section>
+    <!-- ================ Contact Info Section End ================= -->
 
+    <!-- ================ Contact Form Section Start ================= -->
+    <section class="section_gap bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="main_title">
+              <h2><span>Envoyez-nous un Message</span></h2>
+              <p>Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form class="contact-form" action="#" method="post" id="contactForm" novalidate="novalidate">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" name="name" id="name" type="text" placeholder="Votre nom *" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" name="email" id="email" type="email" placeholder="Votre email *" required>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Sujet *" required>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <textarea class="form-control" name="message" id="message" rows="6" placeholder="Votre message *" required></textarea>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="main_btn">Envoyer le Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ Contact Form Section End ================= -->
+
+    <!-- ================ Map Section Start ================= -->
+    <section class="section_gap">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="main_title">
+              <h2><span>Notre Localisation</span></h2>
+              <p>Retrouvez-nous sur la carte ci-dessous</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <div class="map-container">
+              <div id="map" style="height: 400px; border-radius: 10px; overflow: hidden;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ Map Section End ================= -->
+
+    <!-- ================ Support Section Start ================= -->
+    <section class="section_gap bg-dark text-white">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="main_title">
+              <h2><span>Support 24/7</span></h2>
+              <p>Notre équipe est disponible pour vous accompagner</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-support text-center">
+              <div class="support-icon">
+                <i class="fa fa-headphones"></i>
+              </div>
+              <h4>Support Technique</h4>
+              <p>Assistance technique spécialisée pour tous vos problèmes liés à nos produits digitaux.</p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single-support text-center">
+              <div class="support-icon">
+                <i class="fa fa-comments"></i>
+              </div>
+              <h4>Chat en Direct</h4>
+              <p>Discutez en temps réel avec nos experts pour obtenir une réponse immédiate.</p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single-support text-center">
+              <div class="support-icon">
+                <i class="fa fa-book"></i>
+              </div>
+              <h4>Centre d'Aide</h4>
+              <p>Consultez notre base de connaissances pour trouver rapidement des solutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ Support Section End ================= -->
 
     <!--================Contact Success and Error message Area =================-->
     <div id="success" class="modal modal-message fade" role="dialog">
@@ -130,15 +197,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="fa fa-close"></i>
                     </button>
-                    <h2>Thank you</h2>
-                    <p>Your message is successfully sent...</p>
+                    <h2>Merci !</h2>
+                    <p>Votre message a été envoyé avec succès...</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modals error -->
-
     <div id="error" class="modal modal-message fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -146,11 +212,34 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="fa fa-close"></i>
                     </button>
-                    <h2>Sorry !</h2>
-                    <p> Something went wrong </p>
+                    <h2>Désolé !</h2>
+                    <p>Une erreur s'est produite</p>
                 </div>
             </div>
         </div>
     </div>
     <!--================End Contact Success and Error message Area =================-->
+
+    <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var grayStyles = [
+          {
+            featureType: "all",
+            stylers: [
+              { saturation: -90 },
+              { lightness: 50 }
+            ]
+          },
+          {elementType: 'labels.text.fill', stylers: [{color: '#A3A3A3'}]}
+        ];
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -31.197, lng: 150.744},
+          zoom: 9,
+          styles: grayStyles,
+          scrollwheel: false
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
 {% endblock %}
