@@ -41,52 +41,88 @@ body {
   background: var(--primary-blue);
   color: var(--secondary-white);
   border: 1.5px solid var(--primary-blue);
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
-  transition: background 0.2s, color 0.2s;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0,51,102,0.15);
 }
 .btn:hover,
 .main_btn:hover {
   background: var(--hover-green);
   color: var(--secondary-white);
   border-color: var(--hover-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(26,188,156,0.3);
+  text-decoration: none;
 }
 .btn-outline-primary {
-  background: transparent;
+  background: #f8f9fa;
   color: var(--primary-blue);
   border: 1.5px solid var(--primary-blue);
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 .btn-outline-primary:hover {
   background: var(--primary-blue);
-    color: #fff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,51,102,0.2);
 }
 .btn-outline-danger {
-  background: transparent;
+  background: #fff5f5;
   color: #e74c3c;
   border: 1.5px solid #e74c3c;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 .btn-outline-danger:hover {
   background: #e74c3c;
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231,76,60,0.2);
 }
 
 /* Icônes d'action (like, vue, panier) */
-.p_icon a, .formation-card .btn {
+.p_icon a {
   color: var(--primary-blue);
   background: #f4f8fb;
-    border-radius: 50%;
+  border-radius: 50%;
   width: 36px;
   height: 36px;
   display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin-right: 8px;
   font-size: 18px;
   transition: background 0.2s, color 0.2s;
 }
-.p_icon a:hover, .formation-card .btn:hover {
+.p_icon a:hover {
   background: var(--hover-green);
-    color: #fff;
+  color: #fff;
+}
+
+/* Boutons dans les cartes de formation */
+.formation-card .btn {
+  background: #f8f9fa;
+  color: var(--primary-blue);
+  border: 1.5px solid var(--primary-blue);
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+.formation-card .btn:hover {
+  background: var(--primary-blue);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,51,102,0.2);
+  text-decoration: none;
 }
 
 /* Amélioration générale des espacements et marges */
@@ -318,8 +354,18 @@ body {
 }
 .formation-detail-btns .btn {
   font-size: 1.1rem;
-  padding: 0.7rem 2.2rem;
+  padding: 0.8rem 2.5rem;
   border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0,51,102,0.15);
+}
+.formation-detail-btns .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,51,102,0.25);
+  text-decoration: none;
 }
 @media (max-width: 991px) {
   .formation-detail-main {
@@ -373,9 +419,42 @@ body {
   color: var(--primary-green);
 }
 
+/* Amélioration du bouton principal de la bannière */
+.home_banner_area .main_btn {
+  background: var(--primary-blue);
+  color: #fff;
+  border: 2px solid var(--primary-blue);
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 20px rgba(0,51,102,0.3);
+}
+.home_banner_area .main_btn:hover {
+  background: var(--hover-green);
+  color: #fff;
+  border-color: var(--hover-green);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(26,188,156,0.4);
+  text-decoration: none;
+}
+
 .feature-area {
   padding: 80px 0;
   margin-bottom: 60px;
+}
+
+.feature-area .row {
+  align-items: stretch;
+}
+
+.feature-area .col-lg-3,
+.feature-area .col-md-6 {
+  display: flex;
+  margin-bottom: 2rem;
 }
 
 .feature-area .single-feature {
@@ -386,6 +465,11 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   margin-bottom: 2rem;
   transition: transform 0.3s;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .feature-area .single-feature:hover {
@@ -395,14 +479,33 @@ body {
 .feature-area .single-feature h3 {
   font-size: 1.3rem;
   font-weight: 700;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   color: var(--primary-blue);
 }
 
 .feature-area .single-feature p {
   color: #666;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.feature-area .single-feature .title {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.feature-area .single-feature .title:hover {
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+.feature-area .single-feature i {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
 }
 
 .feature_product_area {
@@ -421,6 +524,50 @@ body {
   font-size: 1.1rem;
   color: #666;
   margin-bottom: 3rem;
+}
+
+/* Amélioration des boutons dans la page d'accueil */
+.new_product .main_btn {
+  background: var(--primary-blue);
+  color: #fff;
+  border: 2px solid var(--primary-blue);
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 12px 30px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 3px 10px rgba(0,51,102,0.2);
+}
+.new_product .main_btn:hover {
+  background: var(--hover-green);
+  color: #fff;
+  border-color: var(--hover-green);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(26,188,156,0.3);
+  text-decoration: none;
+}
+
+/* Amélioration des boutons dans la section Offer */
+.offer_area .main_btn {
+  background: var(--primary-green);
+  color: #fff;
+  border: 2px solid var(--primary-green);
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 15px 35px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(26,188,156,0.3);
+}
+.offer_area .main_btn:hover {
+  background: var(--hover-green);
+  color: #fff;
+  border-color: var(--hover-green);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(26,188,156,0.4);
+  text-decoration: none;
 }
 
 .formation-videos-section h4 {
@@ -451,9 +598,15 @@ body {
 }
 .header_area .navbar .nav .nav-item .nav-link {
   color: var(--primary-blue);
+  transition: color 0.3s ease;
 }
-.header_area .navbar .nav .nav-item .nav-link:hover, .header_area .navbar .nav .nav-item.active .nav-link {
+.header_area .navbar .nav .nav-item .nav-link:hover, 
+.header_area .navbar .nav .nav-item.active .nav-link {
   color: var(--primary-green);
+}
+.header_area .navbar .nav .nav-item.active .nav-link {
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary-green);
 }
 
 /* Pour un look plus pro et dynamique */

@@ -71,7 +71,7 @@
             <div class="row w-100 mr-0">
               <div class="col-lg-7 pr-0">
                 <ul class="nav navbar-nav center_nav pull-right">
-                  <li class="nav-item active">
+                  <li class="nav-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'index' %}">Accueil</a>
                   </li>
                   <li class="nav-item submenu dropdown">
@@ -86,10 +86,10 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.resolver_match.url_name == 'about' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'about' %}">À Propos</a>
                   </li>
                 </ul>
