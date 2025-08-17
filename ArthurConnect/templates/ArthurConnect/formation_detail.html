@@ -1,0 +1,63 @@
+{% extends 'ArthurConnect/base.html' %}
+{% load static %}
+{% block title %}{{ formation.titre }} | Formation{% endblock %}
+
+{% block content %}
+<section class="banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div class="container">
+      <div class="banner_content d-md-flex justify-content-between align-items-center">
+        <div class="mb-3 mb-md-0">
+          <h2>{{ formation.titre }}</h2>
+          <p class="mb-0">Catégorie : <span class="badge badge-info">{{ formation.categorie }}</span></p>
+        </div>
+        <div class="page_link">
+          <a href="{% url 'index' %}">Accueil</a>
+          <a href="{% url 'formation' %}">Formations</a>
+          <span>{{ formation.titre }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section_gap">
+  <div class="container">
+    <div class="formation-detail-main">
+      <div class="formation-detail-img">
+        <img src="{% static formation.image %}" alt="{{ formation.titre }}" class="img-fluid formation-img">
+      </div>
+      <div class="formation-detail-content">
+        <h2 class="formation-detail-title">{{ formation.titre }}</h2>
+        <div class="formation-detail-badge">{{ formation.categorie }}</div>
+        <p>{{ formation.description }}</p>
+        <div class="mb-3">
+          <span class="formation-detail-price">{{ formation.prix }}</span>
+          {% if formation.ancien_prix %}
+            <del class="formation-detail-oldprice">{{ formation.ancien_prix }}</del>
+          {% endif %}
+        </div>
+        <div class="formation-detail-btns">
+          <button class="btn main_btn"><i class="ti-shopping-cart"></i> Acheter</button>
+          <button class="btn btn-outline-danger"><i class="ti-heart"></i> Liker</button>
+        </div>
+      </div>
+    </div>
+    <div class="formation-videos-section">
+      <div class="card shadow-sm p-4">
+        <h4>Vidéos de la formation</h4>
+        <div class="row">
+          {% for video in formation.videos %}
+          <div class="col-md-6 mb-4">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="{{ video.url }}" allowfullscreen title="{{ video.titre }}"></iframe>
+            </div>
+            <p class="mt-2 font-weight-bold">{{ video.titre }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} 
