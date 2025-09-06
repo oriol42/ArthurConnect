@@ -1,0 +1,124 @@
+{% extends 'ArthurConnect/base.html' %}
+{% load static %}
+
+{% block title %} Commande {{ order.order_number }} - ArthurConnect {% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">Détail de la commande</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-0">Commande #{{ order.order_number }}</h5>
+                            <small class="text-muted">Date: {{ order.created_at|date:"d/m/Y H:i" }}</small>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <span class="badge badge-{% if order.status == 'delivered' %}success{% elif order.status == 'pending' %}warning{% elif order.status == 'cancelled' %}danger{% else %}info{% endif %}">
+                                {{ order.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Informations de livraison</h6>
+                            <p>
+                                <strong>{{ order.first_name }} {{ order.last_name }}</strong><br>
+                                {{ order.address }}<br>
+                                {{ order.postal_code }} {{ order.city }}<br>
+                                {{ order.country }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Informations de contact</h6>
+                            <p>
+                                <strong>Email:</strong> {{ order.email }}<br>
+                                {% if order.phone %}
+                                    <strong>Téléphone:</strong> {{ order.phone }}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Articles commandés</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in order.items.all %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            {% if item.product.main_image %}
+                                                <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" 
+                                                     class="mr-3" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                                            {% else %}
+                                                <img src="{% static 'ArthurConnect/img/banner/banner-bg.jpg' %}" alt="{{ item.product.name }}" 
+                                                     class="mr-3" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                                            {% endif %}
+                                            <div>
+                                                <h6 class="mb-1">{{ item.product.name }}</h6>
+                                                <small class="text-muted">{{ item.product.category.name }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ item.price }} €</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td class="font-weight-bold">{{ item.total_price }} €</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>Résumé de la commande</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>Sous-total:</span>
+                                <span>{{ order.subtotal }} €</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Frais de livraison:</span>
+                                <span class="text-success">Gratuit</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span class="h5">Total:</span>
+                                <span class="h5 text-primary font-weight-bold">{{ order.total_amount }} €</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="{% url 'my_orders' %}" class="btn btn-outline-primary">
+                                <i class="ti-arrow-left"></i> Retour aux commandes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

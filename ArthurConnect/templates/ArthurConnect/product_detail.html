@@ -1,0 +1,379 @@
+{% extends 'ArthurConnect/base.html' %}
+{% load static %}
+
+{% block title %} {{ product.name }} - ArthurConnect {% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <!-- Image du produit -->
+        <div class="col-lg-6">
+            <div class="product-image-container">
+                {% if product.product_type == 'formation' %}
+                    <img src="{% static 'ArthurConnect/img/banner/homephoto.JPG' %}" class="img-fluid rounded" alt="{{ product.name }}" style="width: 100%; height: 400px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'ArthurConnect/img/banner/homephoto1.jpg' %}" class="img-fluid rounded" alt="{{ product.name }}" style="width: 100%; height: 400px; object-fit: cover;">
+                {% endif %}
+                
+                {% if product.is_on_sale %}
+                    <div class="badge badge-danger position-absolute" style="top: 20px; right: 20px; font-size: 1.2rem; padding: 10px;">
+                        -{{ product.discount_percentage }}%
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Informations du produit -->
+        <div class="col-lg-6">
+            <div class="product-info">
+                <div class="mb-3">
+                    {% if product.product_type == 'formation' %}
+                    <span class="badge badge-info">
+                        <i class="ti-book mr-1"></i>Formation
+                    </span>
+                    {% else %}
+                    <span class="badge badge-success">
+                        <i class="ti-shopping-bag mr-1"></i>Article
+                    </span>
+                    {% endif %}
+                    <span class="badge badge-primary">{{ product.category.name }}</span>
+                    <span class="badge badge-secondary">{{ product.get_level_display }}</span>
+                    {% if product.is_digital %}
+                        <span class="badge badge-warning">Numérique</span>
+                    {% endif %}
+                </div>
+
+                <h1 class="product-title mb-3">{{ product.name }}</h1>
+                
+                <p class="product-description text-muted mb-4">{{ product.description }}</p>
+
+                <!-- Prix -->
+                <div class="price-section mb-4">
+                    <div class="d-flex align-items-center">
+                        <span class="h2 text-primary font-weight-bold mr-3">{{ product.final_price|floatformat:0 }} FCFA</span>
+                        {% if product.old_price %}
+                            <del class="text-muted h4">{{ product.old_price|floatformat:0 }} FCFA</del>
+                        {% endif %}
+                    </div>
+                    {% if product.is_on_sale %}
+                        <small class="text-success">Vous économisez {{ product.old_price|floatformat:2|add:product.final_price|floatformat:2 }} €</small>
+                    {% endif %}
+                </div>
+
+                <!-- Informations de formation -->
+                <div class="formation-info mb-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="info-item">
+                                <i class="ti-time text-primary"></i>
+                                <span class="ml-2">{{ product.duration_hours }} heures</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="info-item">
+                                <i class="ti-user text-primary"></i>
+                                <span class="ml-2">{{ product.get_level_display }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="product-actions mb-4">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-lg btn-block">
+                                    <i class="ti-shopping-cart"></i> Ajouter au panier
+                                </a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-primary btn-lg btn-block">
+                                    <i class="ti-shopping-cart"></i> Se connecter pour acheter
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-outline-primary btn-lg btn-block">
+                                    <i class="ti-heart"></i> Ajouter aux favoris
+                                </a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg btn-block">
+                                    <i class="ti-heart"></i> Favoris
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garanties -->
+                <div class="guarantees mb-4">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <i class="ti-shield text-success" style="font-size: 2rem;"></i>
+                            <p class="small mt-2">Garantie 30 jours</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="ti-download text-primary" style="font-size: 2rem;"></i>
+                            <p class="small mt-2">Accès immédiat</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="ti-headphone text-info" style="font-size: 2rem;"></i>
+                            <p class="small mt-2">Support 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu de la formation -->
+    {% if product.video_urls %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Contenu de la formation</h3>
+            <div class="row">
+                {% for video in product.video_urls %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ video.titre }}</h5>
+                            {% if user.is_authenticated and user_has_purchased %}
+                                <!-- Vidéo complète pour les utilisateurs qui ont payé -->
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="{{ video.url }}" allowfullscreen></iframe>
+                                </div>
+                            {% else %}
+                                <!-- Aperçu de la vidéo pour les non-payants -->
+                                <div class="video-preview position-relative">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="{{ video.url }}" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="video-overlay position-absolute w-100 h-100 d-flex align-items-center justify-content-center" 
+                                         style="top: 0; left: 0; background: rgba(0,0,0,0.7);">
+                                        <div class="text-center text-white">
+                                            <i class="ti-lock" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                            <h5>Contenu verrouillé</h5>
+                                            <p class="mb-3">Achetez cette formation pour accéder au contenu complet</p>
+                                            <a href="#purchase" class="btn btn-primary btn-lg">
+                                                <i class="ti-shopping-cart"></i> Acheter maintenant
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Avis des clients -->
+    {% if reviews %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Avis des clients</h3>
+            <div class="row">
+                {% for review in reviews %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="card-title mb-0">{{ review.user.first_name }} {{ review.user.last_name }}</h6>
+                                <div class="rating">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= review.rating %}
+                                            <i class="ti-star text-warning"></i>
+                                        {% else %}
+                                            <i class="ti-star text-muted"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <h6 class="text-muted">{{ review.title }}</h6>
+                            <p class="card-text">{{ review.comment|truncatewords:20 }}</p>
+                            <small class="text-muted">{{ review.created_at|date:"d/m/Y" }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Formulaire d'avis -->
+    {% if review_form %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Laisser un avis</h3>
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{% url 'add_review' product.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_rating">Note</label>
+                            {{ review_form.rating }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_title">Titre</label>
+                            {{ review_form.title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_comment">Commentaire</label>
+                            {{ review_form.comment }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Publier l'avis</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Section des commentaires et avis -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="reviews-section">
+                <h3 class="section-title mb-4">
+                    <i class="ti-comment mr-2"></i>Commentaires et Avis
+                    <span class="badge badge-primary ml-2">{{ reviews.count }}</span>
+                </h3>
+                
+                {% if user.is_authenticated %}
+                <div class="review-form-card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="ti-pencil mr-2"></i>Laisser un avis
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'add_review' product.id %}" class="review-form">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="rating" class="form-label font-weight-bold">Note :</label>
+                                <select name="rating" id="rating" class="form-control" required>
+                                    <option value="">Choisir une note</option>
+                                    <option value="5">5 étoiles - Excellent</option>
+                                    <option value="4">4 étoiles - Très bien</option>
+                                    <option value="3">3 étoiles - Bien</option>
+                                    <option value="2">2 étoiles - Moyen</option>
+                                    <option value="1">1 étoile - Décevant</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="comment" class="form-label font-weight-bold">Commentaire :</label>
+                                <textarea name="comment" id="comment" class="form-control" rows="4" 
+                                          placeholder="Partagez votre expérience avec ce produit..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="ti-check mr-2"></i>Publier l'avis
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    <i class="ti-info-circle mr-2"></i>
+                    <a href="{% url 'login' %}" class="alert-link">Connectez-vous</a> pour laisser un avis.
+                </div>
+                {% endif %}
+                
+                {% if reviews %}
+                <div class="reviews-list">
+                    {% for review in reviews %}
+                    <div class="review-card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="reviewer-info">
+                                    <h6 class="mb-1 font-weight-bold">{{ review.user.get_full_name|default:review.user.username }}</h6>
+                                    <div class="rating mb-2">
+                                        {% for i in "12345" %}
+                                            {% if forloop.counter <= review.rating %}
+                                                <i class="ti-star text-warning"></i>
+                                            {% else %}
+                                                <i class="ti-star text-muted"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <span class="ml-2 text-muted small">{{ review.rating }}/5</span>
+                                    </div>
+                                </div>
+                                <small class="text-muted">{{ review.created_at|date:"d/m/Y à H:i" }}</small>
+                            </div>
+                            <p class="mb-0 review-comment">{{ review.comment }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="no-reviews text-center py-5">
+                    <i class="ti-comment" style="font-size: 4rem; color: #ddd;"></i>
+                    <h5 class="mt-3 text-muted">Aucun avis pour le moment</h5>
+                    <p class="text-muted">Soyez le premier à laisser un commentaire !</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Produits similaires -->
+    {% if related_products %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Produits similaires</h3>
+            <div class="row">
+                {% for related_product in related_products %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if related_product.product_type == 'formation' %}
+                            <img src="{% static 'ArthurConnect/img/banner/homephoto.JPG' %}" class="card-img-top" alt="{{ related_product.name }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'ArthurConnect/img/banner/homephoto1.jpg' %}" class="card-img-top" alt="{{ related_product.name }}" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title">{{ related_product.name }}</h6>
+                            <p class="card-text text-muted small">{{ related_product.short_description|truncatewords:10 }}</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-primary font-weight-bold">{{ related_product.final_price|floatformat:0 }} FCFA</span>
+                                    <a href="{% url 'product_detail' related_product.id %}" class="btn btn-outline-primary btn-sm">Voir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.product-image-container {
+    position: relative;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating i {
+    font-size: 1.2rem;
+}
+
+.guarantees .col-4 {
+    padding: 15px;
+}
+
+.guarantees i {
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+{% endblock %}

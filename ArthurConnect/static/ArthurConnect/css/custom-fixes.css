@@ -1,0 +1,2203 @@
+/* Fixes pour les problèmes d'affichage */
+
+/* Chat Toggle - Fix position du logo */
+.chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.chat-toggle:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+.chat-toggle i {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.chat-toggle.active i {
+    transform: rotate(180deg);
+}
+
+/* Chat Widget */
+.chat-widget {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h5 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+}
+
+.message.agent {
+    background: #f8f9fa;
+    margin-right: auto;
+}
+
+.message.user {
+    background: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+}
+
+.chat-input button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix pour les boutons de navigation */
+.navbar-nav .nav-item .icons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: rgba(0, 123, 255, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.2);
+}
+
+.navbar-nav .nav-item .icons:hover {
+    background: rgba(0, 123, 255, 0.2);
+    transform: scale(1.1);
+    border-color: #007bff;
+}
+
+.navbar-nav .nav-item .icons i {
+    font-size: 18px;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-item .icons:hover i {
+    color: #0056b3;
+}
+
+/* Fix pour les boutons généraux */
+.btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+}
+
+.btn:hover {
+    opacity: 0.9 !important;
+}
+
+/* Fix pour les boutons de produits */
+.p_icon {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+.p_icon a {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.p_icon a:hover {
+    background: #007bff;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Fix pour les dropdowns */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+    color: #007bff;
+}
+
+/* Fix pour les badges du panier */
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 15px;
+    min-width: 20px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-weight: 500;
+}
+
+/* Fix pour les badges sur les cartes de produits */
+.single-product .badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: auto;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    z-index: 5;
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.single-product .badge.badge-danger {
+    top: 10px;
+    right: 10px;
+    left: auto;
+}
+
+/* Fix spécifique pour les badges des cartes de favoris */
+.single-product.formation-card .badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: auto;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    z-index: 5;
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.single-product.formation-card .badge.badge-danger {
+    top: 10px;
+    right: 10px;
+    left: auto;
+}
+
+/* Fix pour les badges dans les détails de produit */
+.product-info .badge {
+    position: static;
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 15px;
+    white-space: nowrap;
+}
+
+/* Amélioration de la page d'accueil */
+.home_banner_area {
+    background: url('../img/banner/homephoto3.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    position: relative;
+}
+
+.home_banner_area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.home_banner_area .container {
+    position: relative;
+    z-index: 2;
+}
+
+.banner_content h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.banner_content h4 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.main_btn {
+    background: #ff6b6b;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.main_btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Amélioration des cartes de produits */
+.single-product {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+    border: 1px solid #e9ecef;
+    margin-bottom: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-product:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.product-img {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+    flex-shrink: 0;
+}
+
+/* Cartes pour 2 par ligne (formations et articles) */
+.col-lg-6 .single-product .product-img {
+    height: 250px;
+}
+
+.col-lg-6 .single-product .product-btm {
+    padding: 20px 25px 25px 25px;  /* Top, Right, Bottom, Left */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;  /* Hauteur minimale pour uniformiser */
+}
+
+.col-lg-6 .single-product .product-btm h4 {
+    order: 1;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #71cd14;  /* Couleur verte du site */
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.col-lg-6 .single-product .product-btm h4 a {
+    color: #71cd14;  /* Couleur verte du site */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.col-lg-6 .single-product .product-btm h4 a:hover {
+    color: #5ba80f;  /* Vert plus foncé au survol */
+}
+
+.col-lg-6 .single-product .product-btm .price-section {
+    order: 2;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding: 18px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.col-lg-6 .single-product .product-btm .price-section .h5 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 8px;
+}
+
+.col-lg-6 .single-product .product-btm .price-section del {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.col-lg-6 .single-product .product-btm .price-section small {
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+.col-lg-6 .single-product .product-btm p {
+    order: 3;
+    margin-top: 0px;
+    margin-bottom: 10px;  /* Réduit l'espacement avec les boutons */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    height: 3.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    flex-grow: 1;
+}
+
+/* Fix pour les boutons dans les cartes 2 par ligne */
+.col-lg-6 .single-product .product-btm .mt-auto {
+    order: 4;
+    margin-top: auto;
+    padding-top: 15px;   /* Espacement avec le contenu au-dessus */
+    padding-bottom: 5px;  /* Petit espacement en bas */
+}
+
+.col-lg-6 .single-product .product-btm .d-flex.gap-2 {
+    margin-top: auto;
+    padding-top: 15px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+/* ===== REFONTE COMPLÈTE DES CARTES ===== */
+
+/* Styles de base pour toutes les cartes de produits */
+.single-product {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Image des cartes */
+.single-product .product-img {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.single-product .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.single-product:hover .product-img img {
+    transform: scale(1.05);
+}
+
+/* Badges sur les images */
+.single-product .product-img .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.single-product .product-img .badge.badge-info {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    color: white;
+}
+
+.single-product .product-img .badge.badge-success {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+}
+
+.single-product .product-img .badge.badge-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    right: 12px;
+    left: auto;
+}
+
+/* ===== GUIDE POUR AJUSTER LA POSITION DES ÉLÉMENTS ===== */
+/* 
+Pour ajuster la position des éléments dans les cartes :
+1. margin-top: Xpx;  - Pousse l'élément vers le bas (valeur positive)
+2. margin-top: -Xpx; - Pousse l'élément vers le haut (valeur négative)
+3. margin-bottom: Xpx; - Espace en bas de l'élément
+4. order: X; - Change l'ordre d'affichage (1=premier, 2=deuxième, etc.)
+*/
+
+/* Corps des cartes */
+.single-product .product-btm {
+    padding: 20px 25px 25px 25px;  /* Top, Right, Bottom, Left */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    min-height: 280px;  /* Hauteur minimale pour uniformiser */
+}
+
+/* Titre des produits */
+.single-product .product-btm h4 {
+    order: 1;
+    margin-top: 15px;  /* Espacement du haut de la carte */
+    margin-bottom: 15px;  /* Espacement avec l'élément suivant */
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #71cd14;  /* Couleur verte du site */
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.single-product .product-btm h4 a {
+    color: #71cd14;  /* Couleur verte du site */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.single-product .product-btm h4 a:hover {
+    color: #5ba80f;  /* Vert plus foncé au survol */
+}
+
+/* Description des produits */
+.single-product .product-btm p {
+    order: 3;
+    margin-top: 0px;    /* Pas d'espace supplémentaire en haut */
+    margin-bottom: 10px;  /* Réduit l'espacement avec les boutons */
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    height: 3.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Section des prix */
+.single-product .product-btm .price-section {
+    order: 2;
+    margin-top: 0px;    /* Pas d'espace supplémentaire en haut */
+    margin-bottom: 20px;  /* Espacement avec l'élément suivant */
+    padding: 18px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.single-product .product-btm .price-section .h5 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 8px;
+}
+
+.single-product .product-btm .price-section del {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.single-product .product-btm .price-section small {
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+/* Boutons d'action */
+.single-product .product-btm .mt-auto {
+    order: 4;
+    margin-top: auto;    /* Garde les boutons en bas */
+    padding-top: 15px;   /* Espacement avec le contenu au-dessus */
+    padding-bottom: 5px;  /* Petit espacement en bas */
+}
+
+.single-product .product-btm .d-flex.gap-2 {
+    margin-top: auto;
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 0;
+    gap: 10px;
+}
+
+.single-product .product-btm .btn {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.single-product .product-btm .btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    background: transparent;
+}
+
+.single-product .product-btm .btn-outline-primary:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.single-product .product-btm .btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    color: white;
+}
+
+.single-product .product-btm .btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* ===== CARTES DE FAVORIS ===== */
+.wishlist-card .card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.wishlist-card .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.wishlist-card .card-img-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.wishlist-card .card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.wishlist-card .card:hover .card-img-container img {
+    transform: scale(1.05);
+}
+
+.wishlist-card .wishlist-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+}
+
+.wishlist-card .wishlist-actions .btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #dc3545;
+    transition: all 0.3s ease;
+}
+
+.wishlist-card .wishlist-actions .btn:hover {
+    background: #dc3545;
+    color: white;
+    transform: scale(1.1);
+}
+
+.wishlist-card .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+}
+
+.wishlist-card .product-badge .badge {
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wishlist-card .discount-badge {
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    z-index: 10;
+}
+
+.wishlist-card .discount-badge .badge {
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.wishlist-card .card-body {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+}
+
+.wishlist-card .card-body h5 {
+    order: 1;
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.3;
+    height: 2.6em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.wishlist-card .card-body .card-text {
+    order: 2;
+    margin-bottom: 15px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    height: 3em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.wishlist-card .card-body .product-meta {
+    order: 3;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #17a2b8;
+}
+
+.wishlist-card .card-body .product-meta small {
+    color: #6c757d;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.wishlist-card .card-body .product-meta small:last-child {
+    margin-bottom: 0;
+}
+
+.wishlist-card .card-body .price-section {
+    order: 4;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.wishlist-card .card-body .price-section .h5 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 8px;
+}
+
+.wishlist-card .card-body .price-section del {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.wishlist-card .card-body .card-actions {
+    order: 5;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.wishlist-card .card-body .card-actions .d-flex {
+    gap: 10px;
+}
+
+.wishlist-card .card-body .card-actions .btn {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wishlist-card .card-body .card-actions .btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    background: transparent;
+}
+
+.wishlist-card .card-body .card-actions .btn-outline-primary:hover {
+    background: #007bff;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+.wishlist-card .card-body .card-actions .btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    border: none;
+    color: white;
+}
+
+.wishlist-card .card-body .card-actions .btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Fix spécifique pour les cartes de l'accueil (3 par ligne) */
+.col-lg-4 .single-product .product-btm {
+    padding: 20px 25px 25px 25px;  /* Top, Right, Bottom, Left */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;  /* Hauteur minimale pour les cartes 3 par ligne */
+}
+
+.col-lg-4 .single-product .product-btm .mt-auto {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.col-lg-4 .single-product .product-btm .d-flex.gap-2 {
+    margin-top: auto;
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ===== CARTES DE CATÉGORIES ===== */
+.category-card {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 30px 20px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 123, 255, 0.15);
+    border-color: #007bff;
+}
+
+.category-card i {
+    font-size: 3.5rem;
+    color: #007bff;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover i {
+    transform: scale(1.1);
+    color: #0056b3;
+}
+
+.category-card h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.category-card p {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-align: center;
+    flex-grow: 1;
+    line-height: 1.5;
+    height: 2.7em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.category-card .btn {
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    color: white;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.category-card .btn:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* ===== STYLES RESPONSIVE POUR TOUTES LES CARTES ===== */
+
+/* Tablettes */
+@media (max-width: 991.98px) {
+    .single-product .product-img {
+        height: 180px;
+    }
+    
+    .single-product .product-btm {
+        padding: 20px;
+    }
+    
+    .single-product .product-btm h4 {
+        font-size: 1.1rem;
+    }
+    
+    .category-card {
+        height: 200px;
+        padding: 25px 15px;
+    }
+    
+    .category-card i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    
+    .category-card h4 {
+        font-size: 1.2rem;
+    }
+    
+    .wishlist-card .card-img-container {
+        height: 180px;
+    }
+    
+    .wishlist-card .card-body {
+        padding: 20px;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 767.98px) {
+    .single-product .product-img {
+        height: 160px;
+    }
+    
+    .single-product .product-btm {
+        padding: 15px;
+    }
+    
+    .single-product .product-btm h4 {
+        font-size: 1rem;
+        height: 2.4em;
+    }
+    
+    .single-product .product-btm p {
+        font-size: 0.85rem;
+        height: 2.7em;
+    }
+    
+    .single-product .product-btm .btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .category-card {
+        height: 180px;
+        padding: 20px 15px;
+    }
+    
+    .category-card i {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .category-card h4 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+    
+    .category-card p {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .category-card .btn {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+    
+    .wishlist-card .card-img-container {
+        height: 160px;
+    }
+    
+    .wishlist-card .card-body {
+        padding: 15px;
+    }
+    
+    .wishlist-card .card-body h5 {
+        font-size: 1.1rem;
+        height: 2.4em;
+    }
+    
+    .wishlist-card .card-body .card-text {
+        font-size: 0.85rem;
+        height: 2.7em;
+    }
+    
+    .wishlist-card .card-body .card-actions .btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Amélioration spécifique des cartes de favoris */
+.single-product.formation-card {
+    height: 320px;
+    margin-bottom: 30px;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.single-product.formation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.single-product.formation-card .product-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.single-product.formation-card .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.single-product.formation-card:hover .product-img img {
+    transform: scale(1.08);
+}
+
+.single-product.formation-card .product-btm {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-product.formation-card .product-btm h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.single-product.formation-card .product-btm p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #666;
+    flex-grow: 1;
+}
+
+.product-img img {
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.single-product:hover .product-img img {
+    transform: scale(1.08);
+}
+
+.product-btm {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-btm h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.product-btm p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #666;
+    flex-grow: 1;
+}
+
+/* Fix pour les boutons dans les cartes */
+.product-btm .mt-auto {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.product-btm .d-flex.gap-2 {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+/* Fix pour les icônes des cartes */
+.p_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.single-product:hover .p_icon {
+    opacity: 1;
+}
+
+.p_icon a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.p_icon a:hover {
+    background: #007bff;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Fix pour les boutons */
+.btn {
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 14px;
+    line-height: 1.4;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 13px;
+    min-height: 40px;
+}
+
+/* Espacement des boutons dans les cartes */
+.d-flex.gap-2 {
+    gap: 12px !important;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.d-flex.gap-2 .btn {
+    flex: 1;
+    margin: 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix pour les boutons dans les cartes de produits */
+.single-product .product-btm .d-flex.gap-2 {
+    margin-top: 0;
+    padding-top: 15px;
+    border-top: none;
+    width: 100%;
+}
+
+.single-product .product-btm .d-flex.gap-2 .btn {
+    font-size: 13px;
+    padding: 10px 16px;
+    min-height: 40px;
+    flex: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix spécifique pour les cartes de l'accueil */
+.single-product .product-btm .mt-auto {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.single-product .product-btm .mt-auto .d-flex.gap-2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Fix général pour tous les boutons dans les cartes */
+.single-product .d-flex.gap-2 {
+    margin-top: auto;
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.single-product .d-flex.gap-2 .btn {
+    font-size: 14px;
+    padding: 12px 20px;
+    min-height: 45px;
+    flex: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Fix spécifique pour les boutons des cartes de favoris */
+.single-product.formation-card .product-btm .d-flex.gap-2 {
+    margin-top: auto;
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.single-product.formation-card .product-btm .d-flex.gap-2 .btn {
+    font-size: 14px;
+    padding: 12px 20px;
+    min-height: 45px;
+    flex: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border: 2px solid #007bff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    color: white;
+    border-color: #0056b3;
+}
+
+.btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    color: white;
+    border: 2px solid #28a745;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #155724 100%);
+    color: white;
+    border-color: #1e7e34;
+}
+
+.btn-outline-success {
+    border: 2px solid #28a745;
+    color: #28a745;
+    background: transparent;
+}
+
+.btn-outline-success:hover {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: 2px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+    color: white;
+    border-color: #c82333;
+}
+
+/* Amélioration des sidebars */
+.sidebar {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar_widget {
+    margin-bottom: 25px;
+}
+
+.sidebar_widget:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar_widget h5 {
+    color: #007bff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.list-group-item {
+    border: none;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+    border: 1px solid #e9ecef;
+}
+
+.list-group-item:hover {
+    background: #007bff;
+    color: white;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.list-group-item i {
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+.badge-pill {
+    font-size: 10px;
+    padding: 4px 8px;
+}
+
+/* Fix pour les commentaires */
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group select,
+.form-group textarea {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Fix pour les boutons de quantité dans le panier */
+.input-group {
+    width: 120px;
+}
+
+.input-group .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.input-group .btn:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.input-group .btn:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.input-group input {
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+/* Styles pour la section commentaires */
+.reviews-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.section-title {
+    color: #333;
+    font-weight: 600;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.review-form-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+.review-form-card .card-header {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    border: none;
+}
+
+.review-form .form-label {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+    font-size: 14px;
+}
+
+/* Fix pour nice-select qui cause le chevauchement */
+.nice-select {
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.nice-select .current {
+    padding: 12px 15px !important;
+    line-height: 1.4 !important;
+    border: 2px solid #e9ecef !important;
+    border-radius: 8px !important;
+    background: white !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.nice-select .list {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-top: 5px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    z-index: 1001 !important;
+    background: white !important;
+    border: 1px solid #e9ecef !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
+
+.nice-select.open .list {
+    display: block !important;
+}
+
+.nice-select .option {
+    padding: 10px 15px !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s !important;
+}
+
+.nice-select .option:hover {
+    background-color: #f8f9fa !important;
+}
+
+.nice-select .option.selected {
+    background-color: #007bff !important;
+    color: white !important;
+}
+
+/* Fix spécifique pour éviter le chevauchement */
+.form-group {
+    margin-bottom: 30px !important;
+    position: relative !important;
+}
+
+.form-group .nice-select {
+    margin-top: 18px !important;
+    margin-bottom: 25px !important;
+}
+
+/* Fix pour les formulaires de commentaires */
+.review-form .form-group {
+    margin-bottom: 25px !important;
+}
+
+.review-form .form-group:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Fix pour les conteneurs de formulaires */
+.review-form-card .card-body {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Fix pour éviter les chevauchements dans les formulaires */
+.review-form {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.review-form .form-group {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Fix spécifique pour le nice-select dans les commentaires */
+.review-form .nice-select {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+.review-form .nice-select.open {
+    z-index: 1000 !important;
+}
+
+.review-form .nice-select .list {
+    z-index: 1001 !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+}
+
+/* Fix pour l'état ouvert du nice-select */
+.nice-select.open {
+    z-index: 1000 !important;
+}
+
+.nice-select.open .current {
+    border-color: #007bff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+/* Fix pour éviter que le nice-select se chevauche avec les éléments suivants */
+.nice-select.open + .form-group {
+    margin-top: 50px !important;
+}
+
+/* Fix général pour tous les nice-select */
+.nice-select {
+    margin-bottom: 30px !important;
+}
+
+/* Fix pour les formulaires en ligne */
+.review-form .row .form-group .nice-select {
+    margin-bottom: 20px !important;
+}
+
+/* ===== STYLES POUR LES CARTES DE FAVORIS ===== */
+.wishlist-card {
+    margin-bottom: 30px;
+}
+
+.wishlist-card .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.wishlist-card .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Conteneur d'image */
+.card-img-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-img-container .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.wishlist-card .card:hover .card-img-top {
+    transform: scale(1.08);
+}
+
+/* Actions des favoris */
+.wishlist-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.wishlist-remove-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.wishlist-remove-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Badges de produits */
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+}
+
+.product-badge .badge {
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.discount-badge .badge {
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+/* Fix pour éviter le chevauchement des badges */
+.wishlist-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 15px;
+    right: 60px;
+    z-index: 10;
+}
+
+/* Corps de la carte */
+.wishlist-card .card-body {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.wishlist-card .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.wishlist-card .card-title a {
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.wishlist-card .card-title a:hover {
+    color: #007bff;
+}
+
+.wishlist-card .card-text {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #666;
+    flex-grow: 1;
+}
+
+/* Métadonnées du produit */
+.product-meta {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.product-meta .small {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Section des prix */
+.price-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.price-section .h5 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0;
+}
+
+.price-section del {
+    font-size: 14px;
+    color: #999;
+}
+
+/* Actions de la carte */
+.card-actions {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.card-actions .btn {
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-actions .btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+}
+
+.card-actions .btn-outline-primary:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.card-actions .btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: 2px solid #007bff;
+    color: white;
+}
+
+.card-actions .btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive pour les cartes de favoris */
+@media (max-width: 768px) {
+    .wishlist-card .card-body {
+        padding: 20px;
+    }
+    
+    .card-img-container {
+        height: 220px;
+    }
+    
+    .wishlist-card .card-title {
+        font-size: 16px;
+    }
+    
+    .price-section .h5 {
+        font-size: 18px;
+    }
+    
+    .card-actions .btn {
+        font-size: 13px;
+        padding: 10px 16px;
+        min-height: 40px;
+    }
+}
+
+/* Responsive pour toutes les cartes */
+@media (max-width: 768px) {
+    .col-lg-6 .single-product .product-img {
+        height: 220px;
+    }
+    
+    .single-product .d-flex.gap-2 .btn {
+        font-size: 13px;
+        padding: 10px 16px;
+        min-height: 40px;
+    }
+}
+
+/* Fix pour les labels de formulaire */
+.form-label {
+    margin-bottom: 8px !important;
+    display: block !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+}
+
+/* Fix pour les champs de commentaire */
+.form-group textarea {
+    margin-top: 8px !important;
+    min-height: 100px !important;
+}
+
+/* Styles pour la nouvelle section commentaires */
+.reviews-section {
+    margin-top: 2rem;
+}
+
+.review-form-card .card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.review-form-card .card-header {
+    border-radius: 12px 12px 0 0;
+    border: none;
+}
+
+.review-form-card .form-group {
+    margin-bottom: 20px;
+}
+
+.review-form-card .form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.review-card .card {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.review-card .card-body {
+    padding: 20px;
+}
+
+.review-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.review-comment {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.rating i {
+    font-size: 1.1rem;
+    margin-right: 2px;
+}
+
+/* Fix pour les alertes */
+.alert {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.alert-info {
+    background-color: #e3f2fd;
+    color: #0277bd;
+}
+
+.alert-warning {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+.review-form .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.review-form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.review-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reviewer-info h6 {
+    color: #333;
+    font-size: 16px;
+}
+
+.rating i {
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.review-comment {
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.no-reviews {
+    background: white;
+    border-radius: 10px;
+    border: 2px dashed #ddd;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .chat-widget {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+    
+    .banner_content h3 {
+        font-size: 2rem;
+    }
+    
+    .banner_content h4 {
+        font-size: 1.2rem;
+    }
+    
+    .sidebar {
+        margin-bottom: 30px;
+    }
+    
+    .single-product {
+        margin-bottom: 25px;
+    }
+    
+    .product-img {
+        height: 220px;
+    }
+    
+    .col-lg-6 .single-product .product-img {
+        height: 200px;
+    }
+    
+    .product-btm {
+        padding: 15px;
+    }
+    
+    .product-btm h4 {
+        font-size: 16px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .d-flex.gap-2 {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+    
+    .d-flex.gap-2 .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-img {
+        height: 200px;
+    }
+    
+    .col-lg-6 .single-product .product-img {
+        height: 180px;
+    }
+    
+    .product-btm {
+        padding: 12px;
+    }
+    
+    .product-btm h4 {
+        font-size: 15px;
+    }
+    
+    .product-btm h5 {
+        font-size: 14px;
+    }
+    
+    .product-btm p {
+        font-size: 13px;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .badge {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+    
+    .single-product {
+        margin-bottom: 20px;
+    }
+    
+    /* Sur mobile, revenir à 1 par ligne */
+    .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+

@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'ArthurConnect',
 ]
 
@@ -117,6 +119,29 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "ArthurConnect/static",]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Login/Logout URLs
+LOGIN_URL = '/arthurconnect/login/'
+LOGIN_REDIRECT_URL = '/arthurconnect/'
+LOGOUT_REDIRECT_URL = '/arthurconnect/'
+
+# Session configuration
+SESSION_COOKIE_AGE = 86400  # 24 heures
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Security settings (à améliorer en production)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

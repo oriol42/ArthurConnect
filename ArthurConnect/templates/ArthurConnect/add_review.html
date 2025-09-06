@@ -1,0 +1,55 @@
+{% extends 'ArthurConnect/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Ajouter un avis - {{ product.name }} {% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">Ajouter un avis</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            {% if product.main_image %}
+                                <img src="{{ product.main_image.url }}" class="img-fluid rounded mb-3" alt="{{ product.name }}" style="max-height: 200px;">
+                            {% else %}
+                                <img src="{% static 'ArthurConnect/img/banner/banner-bg.jpg' %}" class="img-fluid rounded mb-3" alt="{{ product.name }}" style="max-height: 200px;">
+                            {% endif %}
+                            <h5>{{ product.name }}</h5>
+                            <p class="text-muted">{{ product.category.name }}</p>
+                            <span class="h4 text-primary">{{ product.final_price }} €</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Votre avis</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                
+                                <div class="form-group mt-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="ti-check"></i> Publier l'avis
+                                    </button>
+                                    <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-secondary ml-2">
+                                        <i class="ti-arrow-left"></i> Retour au produit
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

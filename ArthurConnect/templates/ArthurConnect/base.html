@@ -24,12 +24,26 @@
   <link rel="stylesheet" href="{% static 'ArthurConnect/css/responsive.css' %}" />
   <link rel="stylesheet" href="{% static 'ArthurConnect/css/custom-pages.css' %}" />
   <link rel="stylesheet" href="{% static 'ArthurConnect/css/contact-structure.css' %}" />
+  <link rel="stylesheet" href="{% static 'ArthurConnect/css/custom-fixes.css' %}" />
 </head>
 
 
 <body>
   <!--================Header Menu Area =================-->
   <header class="header_area">
+    <!-- Messages d'alerte -->
+    {% if messages %}
+      <div class="container mt-2">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
     <div class="top_menu">
       <div class="container">
         <div class="row">
@@ -76,13 +90,13 @@
                   </li>
                   <li class="nav-item submenu dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Categorie</a>
+                      aria-expanded="false">Formations</a>
                     <ul class="dropdown-menu">
                       <li class="nav-item">
-                        <a class="nav-link" href="{% url 'article' %}">Articles</a>
+                        <a class="nav-link" href="{% url 'boutique_formations' %}">Formations</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{% url 'formation' %}">Formations</a>
+                        <a class="nav-link" href="{% url 'boutique_articles' %}">Articles</a>
                       </li>
                     </ul>
                   </li>
@@ -98,28 +112,47 @@
               <div class="col-lg-5 pr-0">
                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                   <li class="nav-item">
-                    <a href="#" class="icons">
-                      <i class="ti-search" aria-hidden="true"></i>
+                    <a href="{% url 'boutique_formations' %}" class="icons" title="Formations">
+                      <i class="ti-book" aria-hidden="true"></i>
                     </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="#" class="icons">
+                    <a href="{% url 'cart' %}" class="icons" title="Panier">
                       <i class="ti-shopping-cart"></i>
+                      {% if user.is_authenticated %}
+                        <span class="badge badge-danger" style="position: absolute; top: -8px; right: -8px; font-size: 10px;" id="cart-count">0</span>
+                      {% endif %}
                     </a>
                   </li>
 
-                  <li class="nav-item">
-                    <a href="#" class="icons">
-                      <i class="ti-user" aria-hidden="true"></i>
-                    </a>
-                  </li>
+                  {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                      <a href="#" class="icons dropdown-toggle" data-toggle="dropdown" title="Mon compte">
+                        <i class="ti-user" aria-hidden="true"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{% url 'my_orders' %}">Mes commandes</a>
+                        <a class="dropdown-item" href="{% url 'wishlist' %}">Mes favoris</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a>
+                      </div>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a href="{% url 'login' %}" class="icons" title="Se connecter">
+                        <i class="ti-user" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  {% endif %}
 
-                  <li class="nav-item">
-                    <a href="#" class="icons">
-                      <i class="ti-heart" aria-hidden="true"></i>
-                    </a>
-                  </li>
+                  {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a href="{% url 'wishlist' %}" class="icons" title="Favoris">
+                        <i class="ti-heart" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>
@@ -133,10 +166,10 @@
   {% endblock %}
 
   <!-- ================ Live Chat Widget HTML ================= -->
-  <div id="chat-widget" class="chat-widget" style="display: none;">
+  <div id="chat-widget" class="chat-widget d-none">
     <div class="chat-header">
       <h5><i class="fa fa-comments"></i> Support en Direct</h5>
-      <button onclick="closeChat()" class="close-chat"><i class="fa fa-times"></i></button>
+      <button id="close-chat" class="close-chat"><i class="fa fa-times"></i></button>
     </div>
     <div class="chat-body">
       <div class="chat-messages" id="chat-messages">
@@ -151,7 +184,7 @@
     </div>
   </div>
 
-  <div class="chat-toggle" onclick="openChat()">
+  <div class="chat-toggle" id="chat-toggle">
     <i class="fa fa-comments"></i>
   </div>
   <!-- ================ End Widget HTML ================= -->
@@ -246,6 +279,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="{% static 'ArthurConnect/js/mail-script.js' %}"></script>
   <script src="{% static 'ArthurConnect/js/theme.js' %}"></script>
   <script src="{% static 'ArthurConnect/js/chat.js' %}"></script>
+  <script src="{% static 'ArthurConnect/js/chat-toggle.js' %}"></script>
+
+  <!-- Script pour mettre à jour le compteur du panier -->
+  {% if user.is_authenticated %}
+  <script>
+    // Mettre à jour le compteur du panier au chargement de la page
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/arthurconnect/cart-count/')
+        .then(response => response.json())
+        .then(data => {
+          const cartCount = document.getElementById('cart-count');
+          if (cartCount && data.count > 0) {
+            cartCount.textContent = data.count;
+            cartCount.style.display = 'inline';
+          } else if (cartCount) {
+            cartCount.style.display = 'none';
+          }
+        })
+        .catch(error => console.log('Erreur lors du chargement du panier:', error));
+    });
+  </script>
+  {% endif %}
 
 </body>
 </html>
